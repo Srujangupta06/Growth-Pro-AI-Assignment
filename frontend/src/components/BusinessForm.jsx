@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MdOutlineErrorOutline } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { BusinessContext } from "../context/context";
-
+import {backendUrl} from '../utils/constants'
 const BusinessForm = () => {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
@@ -26,8 +26,7 @@ const BusinessForm = () => {
 
   const sendBusinessDetails = async () => {
     try {
-      const backendUrl = "http://localhost:5000/business-data";
-      const response = await fetch(backendUrl, {
+      const response = await fetch(backendUrl+'/business-data', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

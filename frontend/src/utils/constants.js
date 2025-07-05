@@ -1,0 +1,1 @@
+export const backendUrl = 'https://growth-pro-ai-assignment.onrender.com'

@@ -3,7 +3,7 @@ import { BusinessContext } from "../context/context";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaStar, FaRegComments } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
-
+import {backendUrl} from '../utils/constants'
 const BusinessCard = () => {
   const { businessData, setBusinessData } = useContext(BusinessContext);
   const navigate = useNavigate();
@@ -22,8 +22,7 @@ const BusinessCard = () => {
   const onHandleRegenerateHeadline = async () => {
     try {
       setLoading(true); // Start loader
-      const backendUrl = `http://localhost:5000/regenerate-headline?name=${name}&location=${locationParam}`;
-      const response = await fetch(backendUrl);
+      const response = await fetch(backendUrl+`/regenerate-headline?name=${name}&location=${locationParam}`);
       if (response.ok) {
         const data = await response.json();
         setBusinessData({
