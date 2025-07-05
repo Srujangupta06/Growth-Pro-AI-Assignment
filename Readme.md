@@ -26,8 +26,6 @@ This is a full-stack application that generates catchy headlines for local busin
 
 ## 📁 Folder Structure
 
-
-
 backend/ # Express server
  - index.js
  - utils/
