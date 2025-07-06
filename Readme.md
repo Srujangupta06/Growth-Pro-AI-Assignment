@@ -59,7 +59,7 @@ npm install
 cd frontend
 npm install
 npm run dev
-Opens app on https://growthproai-rho.vercel.app/
+Opens app on https://gpai-ashy.vercel.app/
 
 
 

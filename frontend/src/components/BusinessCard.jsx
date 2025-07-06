@@ -3,7 +3,6 @@ import { BusinessContext } from "../context/context";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaStar, FaRegComments } from "react-icons/fa";
 import { ClipLoader } from "react-spinners";
-import { backendUrl } from "../utils/constants";
 
 const BusinessCard = () => {
   const { businessData, setBusinessData } = useContext(BusinessContext);
@@ -23,6 +22,7 @@ const BusinessCard = () => {
   const onHandleRegenerateHeadline = async () => {
     try {
       setLoading(true);
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
       const response = await fetch(
         `${backendUrl}/regenerate-headline?name=${name}&location=${locationParam}`
       );

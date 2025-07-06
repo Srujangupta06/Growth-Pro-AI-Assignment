@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { MdOutlineErrorOutline } from "react-icons/md";
 import { toast } from "react-hot-toast";
 import { BusinessContext } from "../context/context";
-import { backendUrl } from "../utils/constants";
 
 const BusinessForm = () => {
   const [name, setName] = useState("");
@@ -26,7 +25,7 @@ const BusinessForm = () => {
 
   const sendBusinessDetails = async () => {
     try {
-      console.log(backendUrl)
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
       const response = await fetch(`${backendUrl}/business-data`, {
         method: "POST",
         headers: {
