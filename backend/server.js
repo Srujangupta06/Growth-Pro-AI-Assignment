@@ -15,13 +15,27 @@ app.use(express.json());
 
 const allowedOrigins = [process.env.FRONTEND_DEV_URL, process.env.FRONTEND_URL];
 
+const allowedOrigins = [
+  process.env.FRONTEND_DEV_URL,
+  process.env.FRONTEND_URL,
+];
+
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl)
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.log("Blocked by CORS:", origin);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST"],
     credentials: true,
   })
 );
+
 
 // API for Business Data
 app.post("/business-data", async (req, res) => {
