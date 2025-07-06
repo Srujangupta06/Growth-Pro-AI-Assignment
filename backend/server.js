@@ -15,10 +15,7 @@ app.use(express.json());
 
 const allowedOrigins = [process.env.FRONTEND_DEV_URL, process.env.FRONTEND_URL];
 
-const allowedOrigins = [
-  process.env.FRONTEND_DEV_URL,
-  process.env.FRONTEND_URL,
-];
+
 
 app.use(
   cors({
