@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
+    origin: process.env.NODE_ENV === 'DEV' ? process.env.FRONTEND_DEV_URL : process.env.FRONTEND_URL,
   })
 );
 

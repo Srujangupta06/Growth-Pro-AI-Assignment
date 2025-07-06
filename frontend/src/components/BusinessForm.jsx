@@ -26,6 +26,7 @@ const BusinessForm = () => {
 
   const sendBusinessDetails = async () => {
     try {
+      console.log(backendUrl)
       const response = await fetch(`${backendUrl}/business-data`, {
         method: "POST",
         headers: {
