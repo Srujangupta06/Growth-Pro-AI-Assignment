@@ -10,9 +10,22 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+
+
+
+const allowedOrigins = [process.env.FRONTEND_DEV_URL, process.env.FRONTEND_URL];
+
 app.use(
   cors({
-    origin: process.env.NODE_ENV === 'DEV' ? process.env.FRONTEND_DEV_URL : process.env.FRONTEND_URL,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST"],
+    credentials: true,
   })
 );
 
@@ -20,7 +33,7 @@ app.use(
 app.post("/business-data", async (req, res) => {
   try {
     const { name, location } = req.body;
-    
+
     // Validate the Request Body
     validateBody({ name, location });
 
